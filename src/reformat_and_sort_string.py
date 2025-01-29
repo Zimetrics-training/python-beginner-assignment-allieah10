@@ -30,3 +30,6 @@ def reformat_and_sort(s: str) -> str:
 
     # Step 6: Join the words back into a string with spaces in between
     return " ".join(words)
+
+
+print(reformat_and_sort('  chErry aPPLE baNaNA  '))

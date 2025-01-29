@@ -23,17 +23,51 @@ Additionally, create helper functions:
 from typing import List
 
 def is_prime(num: int) -> bool:
-    # Your code to check if a number is prime
-    pass
+    for i in range(2, int(num ** 0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
+def is_prime(num: int) -> bool:
+    if num <= 1:
+        return False
+    for i in range(2, int(num**0.5) + 1):
+        if num % i == 0:
+            return False
+    return True
 
 def is_perfect(num: int) -> bool:
     # Your code to check if a number is perfect
-    pass
+    if num<=0:
+        return False
+    sum=0
+    for i in range(1,num-1):
+        if num%i==0:
+            sum=sum+i
+    if num==sum:
+        return True
 
 def categorize_numbers(nums: List[int]) -> List[str]:
     result = []
     for num in nums:
         # Your code to categorize each number based on the conditions
-        pass
+        categories = []
+        if num>0:
+            categories.append('positive')
+        elif num<0:
+            categories.append('negative')
+        else:
+            categories.append('zero')
+        if num % 2 ==0:
+            categories.append('even')
+        else:
+            categories.append('odd')
+
+        if is_prime(num):
+            categories.append("prime")
+        
+        if is_perfect(num):
+            categories.append("perfect")
+        
+        result.append(", ".join(categories))
     
     return result
