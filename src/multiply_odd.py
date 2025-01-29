@@ -25,7 +25,12 @@ def filter_odd_numbers(numbers: List[int]) -> List[int]:
     Returns:
         List[int]: A list of odd integers from the input list.
     """
-    pass
+    odd_numbers=[]
+    for i in numbers:
+        if i % 2 != 0:
+            odd_numbers.append(i)
+    # print(odd_numbers)
+    return odd_numbers
 
 def multiply_odd_numbers(numbers: List[int]) -> int:
     """
@@ -37,6 +42,12 @@ def multiply_odd_numbers(numbers: List[int]) -> int:
     Returns:
         int: The product of the odd numbers in the list. If no odd numbers are found, return 1.
     """
-    pass
+    numbers=filter_odd_numbers(numbers)
+    if not numbers:
+        return 1
+    result=1
+    for i in numbers:
+        result=result*i
+    return result
 
 

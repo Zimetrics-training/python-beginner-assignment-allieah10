@@ -15,4 +15,12 @@ def count_char_occurrences(s, char):
     This function takes a string and a character and returns how many times the character appears in the string.
     """
     # Your code here
-    pass
+    if not s:
+        return 0
+    count=0
+    for i in s:
+        if i==char:
+            count=count+1
+           
+    return count
+count_char_occurrences('hello','l')

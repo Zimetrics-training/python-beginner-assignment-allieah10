@@ -1,4 +1,5 @@
 # bank_account.py
+#test
 """
 Problem Description:
 Create a BankAccount class that models a simple banking system. This class should support the following functionality:
@@ -6,6 +7,7 @@ Create a BankAccount class that models a simple banking system. This class shoul
 Initializes an account with the name of the account holder and an initial balance. The balance cannot be negative.
 2. deposit(self, amount: float):
 Deposits the specified amount into the account. If the amount is less than or equal to zero, it raises a ValueError.
+
 3. withdraw(self, amount: float):
 Withdraws the specified amount from the account. If the withdrawal amount exceeds the available balance, it raises an InsufficientFundsError (which should be defined as a custom exception).
 If the amount is less than or equal to zero, it raises a ValueError.
@@ -21,29 +23,45 @@ Define a custom exception InsufficientFundsError that will be raised when an acc
 """
 
 class InsufficientFundsError(Exception):
-    pass
+    def ___init__(self,message='Insufficient Funds Error'):
+        super().__init__(message)
 
 class BankAccount:
     def __init__(self, account_holder: str, initial_balance: float):
         # Initialize the bank account
-        pass
+        if initial_balance<0:
+            raise ValueError('Amount cannot be less than zero')
+        self.account_holder=account_holder
+        self.balance=initial_balance
 
     def deposit(self, amount: float):
         # Deposit amount to the account
-        pass
-
+        if amount<=0:
+            raise ValueError('Amount cannot be less than or equal to zero')
+        self.balance=amount+self.balance
+       
     def withdraw(self, amount: float):
         # Withdraw amount from the account
-        pass
+        if amount<=0:
+            raise ValueError('Amount cannot be less than or equal to zero')
+        elif amount >self.balance:
+             raise InsufficientFundsError('Amount cannot be less than or equal to zero')
+        self.balance=self.balance-amount
 
     def get_balance(self):
-        # Return current account balance
-        pass
+        return self.balance
 
     def transfer(self, recipient_account, amount: float):
         # Transfer amount to another account
-        pass
+        if amount<=0:
+            raise ValueError('Amount cannot be less than or equal to zero')
+        elif amount >self.balance:
+             raise InsufficientFundsError('Amount cannot be less than or equal to zero')
+        self.withdraw(amount)
+        recipient_account.deposit(amount)
+        
+
 
     def __str__(self):
         # Return the string representation of the account
-        pass
+        return f'AccountHolder: {self.account_holder}, Balance: {self.balance}'

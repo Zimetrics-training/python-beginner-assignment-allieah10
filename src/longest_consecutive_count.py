@@ -10,4 +10,20 @@ Look for difference of 1 between two consecutive numbers.
 """
 def longest_consecutive(nums):
     # Implement your method here    
-    return longest_streak
+    if not nums:
+        return 0
+        
+    nums.sort()
+    longest_streak = 1
+    current_streak = 1
+    for i in range(1,len(nums)):
+        if nums[i] == nums[i - 1]:  # Skip duplicates
+             current_streak = 1
+        else:
+            if nums[i] == nums[i - 1] + 1:
+                current_streak=current_streak + 1
+            else:
+                longest_streak = max(longest_streak, current_streak)
+                current_streak = 1
+
+    return max(longest_streak, current_streak)
